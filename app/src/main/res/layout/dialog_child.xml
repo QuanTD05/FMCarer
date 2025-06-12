@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:hint="Tên trẻ"
         android:inputType="textPersonName"
-        android:marginBottom="12dp"/>
+        android:layout_marginBottom="12dp"/>
 
     <EditText
         android:id="@+id/edtBirthday"
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:hint="Ngày sinh (yyyy-MM-dd)"
         android:inputType="date"
-        android:marginBottom="12dp"/>
+        android:layout_marginBottom="12dp"/>
 
     <EditText
         android:id="@+id/edtGender"

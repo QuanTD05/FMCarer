@@ -1,32 +1,41 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F1F8E9"> <!-- Nền xanh lá nhạt -->
 
-    <!-- App Bar -->
-
-    <!-- Nội dung chính -->
+    <!-- Toolbar -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/topAppBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/teal_700"
+        android:background="#66BB6A"
         android:title="Danh sách trẻ em"
         android:titleTextColor="@android:color/white"
-         />
 
+        android:elevation="4dp" />
+
+    <!-- Nội dung chính -->
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp"
-        android:layout_marginTop="56dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_marginBottom="72dp"> <!-- tránh che bởi BottomNavigation -->
 
-        <!-- Thanh tìm kiếm -->
+        <!-- Ô tìm kiếm -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Tìm kiếm theo email...">
+            android:hint="Tìm kiếm theo email..."
+
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#A5D6A7"
+            app:boxCornerRadiusTopStart="12dp"
+            app:boxCornerRadiusTopEnd="12dp"
+            app:boxCornerRadiusBottomStart="12dp"
+            app:boxCornerRadiusBottomEnd="12dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/searchEditText"
@@ -34,32 +43,37 @@
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Danh sách trẻ em -->
+        <!-- Danh sách RecyclerView -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_marginTop="8dp"/>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabAdd"
-            android:layout_width="wrap_content"
-            android:layout_height="99dp"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_add"
-            app:backgroundTint="@color/colorPrimary" />
+            android:layout_marginTop="12dp"
+            android:clipToPadding="false"
+            android:paddingBottom="16dp" />
     </LinearLayout>
 
-    <!-- Nút thêm -->
-
-    <!-- Navigation dưới cùng -->
+    <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:menu="@menu/bottom_nav_menu"
-        android:background="?android:attr/windowBackground"/>
+        android:background="@android:color/white"
+        android:elevation="8dp" />
+
+    <!-- Floating Action Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="80dp"
+        android:src="@drawable/ic_add"
+        app:backgroundTint="#66BB6A"
+        app:tint="@android:color/white"
+        android:contentDescription="Thêm mới" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

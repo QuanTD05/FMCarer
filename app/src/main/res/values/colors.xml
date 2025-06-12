@@ -11,4 +11,8 @@
     <color name="colorPrimaryDark">#403d3d</color>
     <color name="colorAccent">#c2bdbf</color>
     <color name="lavender">#8692f7</color>
+    <color name="green_light_bg">#E8F5E9</color>
+    <color name="green_accent">#A5D6A7</color>
+    <color name="green_primary">#66BB6A</color>
+
 </resources>

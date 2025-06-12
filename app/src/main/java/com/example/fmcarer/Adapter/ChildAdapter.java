@@ -1,5 +1,7 @@
 package com.example.fmcarer.Adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,27 +12,25 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fmcarer.Child;
+
 import com.example.fmcarer.R;
+import com.example.fmcarer.activity_child_detail;
 
 import java.util.List;
 
 public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ViewHolder> {
 
     private List<Child> childList;
-    private OnChildEditListener editListener;
     private OnChildDeleteListener deleteListener;
-
-    public interface OnChildEditListener {
-        void onEdit(Child child);
-    }
+    private Context context;
 
     public interface OnChildDeleteListener {
         void onDelete(Child child);
     }
 
-    public ChildAdapter(List<Child> list, OnChildEditListener edit, OnChildDeleteListener delete) {
+    public ChildAdapter(List<Child> list, Context context, OnChildDeleteListener delete) {
         this.childList = list;
-        this.editListener = edit;
+        this.context = context;
         this.deleteListener = delete;
     }
 
@@ -47,7 +47,14 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ViewHolder> 
         holder.txtName.setText(child.getName());
         holder.txtEmail.setText(child.getBirthday());
 
-        holder.itemView.setOnClickListener(v -> editListener.onEdit(child));
+        // Nhấn vào item thì chuyển sang ChildDetailActivity
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, activity_child_detail.class);
+            intent.putExtra("CHILD_OBJECT", child);
+            context.startActivity(intent);
+        });
+
+        // Nhấn nút xoá
         holder.btnDelete.setOnClickListener(v -> deleteListener.onDelete(child));
     }
 

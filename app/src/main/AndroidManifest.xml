@@ -26,6 +26,15 @@
         android:theme="@style/Theme.FMCarer"
         tools:targetApi="31">
         <activity
+            android:name=".CareLogActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ReminderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity_child_detail"
+            android:exported="false" />
+        <activity
             android:name=".SubAccountActivity"
             android:exported="false" />
         <activity

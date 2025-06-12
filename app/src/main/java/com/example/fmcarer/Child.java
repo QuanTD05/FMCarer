@@ -1,5 +1,8 @@
 package com.example.fmcarer;
-public class Child {
+
+import java.io.Serializable;
+
+public class Child implements Serializable {
     private String childId;
     private String userId;
     private String name;

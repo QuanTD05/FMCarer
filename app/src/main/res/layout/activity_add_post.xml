@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="40dp">
+
+    <EditText
+        android:id="@+id/edtContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập nội dung bài đăng…" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupVisibility"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtContent">
+
+        <RadioButton
+            android:id="@+id/radioFamily"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gia đình" />
+
+        <RadioButton
+            android:id="@+id/radioPublic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cộng đồng (cần kiểm duyệt)" />
+
+    </RadioGroup>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/radioGroupVisibility"
+        android:src="@drawable/ic_grid"
+        android:adjustViewBounds="true" />
+
+    <Button
+        android:id="@+id/btnAddPost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Thêm bài đăng" />
+
+</RelativeLayout>

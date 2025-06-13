@@ -13,13 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fmcarer.Adapter.ChildAdapter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private ChildAdapter adapter;
     private String currentUserId;
 
+    private BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,15 +40,41 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        childList = new ArrayList<>();
 
-        adapter = new ChildAdapter(childList, this, this::deleteChild); // Không dùng showEditDialog nữa
+        childList = new ArrayList<>();
+        adapter = new ChildAdapter(childList, this, this::deleteChild);
         recyclerView.setAdapter(adapter);
 
         loadChildren();
 
         FloatingActionButton fab = findViewById(R.id.fabAdd);
         fab.setOnClickListener(v -> showAddDialog());
+
+        bottomNavigationView = findViewById(R.id.bottomNavigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.nav_home) {
+                // Hiện MainActivity hoặc HomeFragment
+                return true;
+
+            } else if (itemId == R.id.nav_post) {
+                // Chuyển sang CommunityActivity
+                Intent intent = new Intent(this, PostActivity.class);
+                startActivity(intent);
+                return true;
+
+            } else if (itemId == R.id.nav_account) {
+//                // Chuyển sang ProfileActivity
+//                Intent intent = new Intent(this, ProfileActivity.class);
+//                startActivity(intent);
+//                return true;
+            }
+
+            return false;
+        });
+
+
     }
 
     private void loadChildren() {
@@ -84,9 +109,9 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("Lưu", (dialog, which) -> {
                     String id = dbRef.push().getKey();
                     Child child = new Child(id, currentUserId,
-                            edtName.getText().toString(),
-                            edtBirthday.getText().toString(),
-                            edtGender.getText().toString());
+                            edtName.getText().toString().trim(),
+                            edtBirthday.getText().toString().trim(),
+                            edtGender.getText().toString().trim());
                     dbRef.child(id).setValue(child);
                 })
                 .setNegativeButton("Hủy", null)

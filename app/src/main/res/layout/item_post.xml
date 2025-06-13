@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <!-- Ảnh bài đăng nếu có -->
+    <ImageView
+        android:id="@+id/imageViewPost"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_add" />
+
+    <!-- Nội dung bài đăng -->
+    <TextView
+        android:id="@+id/textViewContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageViewPost"
+        android:text="Nội dung bài đăng"
+        android:textSize="16sp"
+        android:padding="8dp" />
+
+    <!-- Hiển thị mức visibility -->
+    <TextView
+        android:id="@+id/textViewVisibility"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewContent"
+        android:text="Visibility"
+        android:textSize="14sp"
+        android:padding="4dp" />
+
+</RelativeLayout>
